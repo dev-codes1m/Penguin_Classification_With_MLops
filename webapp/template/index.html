@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Medical Expenses</title>
+<style>
+    .button{ 
+        border:none;
+        color:white;
+        padding:10px 20px;
+        text-align:center;
+        text-decoration:none;
+        display:inline-block;
+        font-size:14px;
+        margin:4px 2px;
+        cursor:pointer;
+    }
+    .button1{background-color: #4caf50;}
+    .button2{background-color: #008cba;}
+</style>
+</head>
+<body style="background-color:rgb(187, 187, 187)">
+
+<center><h1><span style="color:#FF0000">Penguin Species Prediction </span></h1>
+    <center><h3>Please Enter the Data</h3></center> <br>
+
+    <form action="{% url 'result' %}">
+        {% csrf_token %}
+
+        <table align="center">
+            
+            <tr><td>island:<td><input type="text" required name="island"></td></tr>
+            <tr><td>bill_length_mm:<td><input type="text" required name="bill_length_mm"></td></tr>
+            <tr><td>bill_depth_mm:<td><input type="text" required name="bill_depth_mm"></td></tr>
+            <tr><td>flipper_length_mm:<td><input type="text" required name="flipper_length_mm"></td></tr>
+            <tr><td>body_mass_g:<td><input type="text" required name="body_mass_g"></td></tr>
+            <tr><td>sex:<td><input type="text" required name="sex"></td></tr>
+
+        </table>
+
+        <center><button type="submit" name="" value="submit" class="button button1">Submit</button></center>
+        <center><button type="reset" name="" value="reset" class="button button1">Reset</button></center>
+    </form>
+
+    {% if answer == 0 %}
+
+    <center><h2 style="color:#FF6600"> The Species is Adelie</h2>
+    <h3 style="color:#009900">Thanks for using Penguin Species Prediction App</h3></h2>
+    </center>
+    {% elif answer == 1 %}
+
+    <center><h2 style="color:#FF6600"> The Species is Gentoo</h2>
+        <h3 style="color:#009900">Thanks for using Penguin Species Prediction App</h3></h2>
+    </center>
+
+    {% elif answer == 2 %}
+
+    <center><h2 style="color:#FF6600"> The Species is Chinstrap</h2>
+        <h3 style="color:#009900">Thanks for using Penguin Species Prediction App</h3></h2>
+    </center>
+
+    {% endif %}
+
+</center>
+</body>
+</html>
