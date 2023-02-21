@@ -1,0 +1,34 @@
+schema: '2.0'
+stages:
+  load_data:
+    cmd: python src/load_data.py --config=params.yaml
+    deps:
+    - path: source_code/Penguin.csv
+      md5: 79105f9aa836786a5c3cd9fdbcf0b959
+      size: 10069
+    - path: src/get_data.py
+      md5: 5f0dfd76d5dafaaeea82d5b85250e720
+      size: 696
+    - path: src/load_data.py
+      md5: 7b76f758cefa5250998bba79149e740d
+      size: 694
+    outs:
+    - path: data/raw/Penguin_data.csv
+      md5: 79105f9aa836786a5c3cd9fdbcf0b959
+      size: 10069
+  split_data:
+    cmd: python src/split_data.py --config=params.yaml
+    deps:
+    - path: data/raw/Penguin_data.csv
+      md5: 79105f9aa836786a5c3cd9fdbcf0b959
+      size: 10069
+    - path: src/split_data.py
+      md5: 568035c0ed54171ed2bae7437e145db4
+      size: 1080
+    outs:
+    - path: data/processed/test_Penguin_data.csv
+      md5: 8f3937ad7bf9d1a089cb9dfbe8dfd738
+      size: 1099
+    - path: data/processed/train_Penguin_data.csv
+      md5: 03da7d2dbbbffca86c95e1064f0e08b3
+      size: 9049
