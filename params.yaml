@@ -1,0 +1,38 @@
+base: 
+  project: churn-Prediction
+  random_state: 42
+  target_col: species
+
+data_source:
+  s3_source: source_code/Penguin.csv
+
+load_data:
+  raw_dataset_csv: data/raw/Penguin_data.csv
+
+split_data:
+  train_path: data/processed/train_Penguin_data.csv
+  test_path: data/processed/test_Penguin_data.csv
+  test_size: 0.1
+
+estimators:
+  XGBClassifier:
+    params:
+      booster: gbtree
+      max_depth: 1
+      multi_soft: multi:softprob
+
+model_dir: models
+
+reports:
+  params: reports/params.json
+  scores: reports/scores.json
+
+webapp_model_dir: prediction_service/model/model.joblib
+
+mlflow_config:
+  artifacts_dir: artifacts
+  experiment_name: Penguin_Species_Prediction
+  run_name: mlops
+  registered_model_name: Penguin_Species_Prediction_App
+  remote_server_uri: http://127.0.0.1:5000/
+
